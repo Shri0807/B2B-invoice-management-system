@@ -7,3 +7,4 @@ The Objective of Machine Learning part is to predict the date on which the custo
 We use Regression Models to predict the clear date and finally store the new dataset with predicted clear dates in a seperate cvs file.
 
 ##  Front-end/UI
+![alt text](https://github.com/Shri0807/B2B-invoice-management-system/blob/main/UI%20add.png)
