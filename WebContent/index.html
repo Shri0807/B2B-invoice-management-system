@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Management App</title>
+    <link rel="stylesheet" href="styles\index.css">
+    <link rel="stylesheet" href="styles\modals.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+</head>
+<body class="container-1">
+    <div>
+        <header class="header">
+            <img src="images\Group 20399.svg" id="companyLogo">
+            <img src="images\logo.svg" id="logo"> 
+        </header>
+
+        <h3 class="heading">Invoice List</h1>
+
+        
+        <div class="container-2" style="overflow-x: auto; overflow-y: auto">
+            <div class="container-button">
+                <button class="Add" id="addbtn">+ Add</button>
+                <button class="Edit" id="editbtn">&#xf044; Edit</button>
+                <button class="Delete" id="delbtn" class="delete">- Delete</button>
+
+                <form class="search">
+                    <input type="text" placeholder="Search by invoice number">
+                </form>
+            </div>
+
+            <table id="Table1">
+                <thead id="thead"> </thead>
+                <tbody id="tbody"> </tbody>
+            </table>
+        </div>
+
+        <div id="addmodal" class="modal">
+            <div class="addmodal-content">
+                <div class="addmodal-header">
+                    <text class="modalheader" >Add Invoice</text>
+                    <span class="closebtn">&times;</span>
+                </div>
+                <div class="addmodal-body">
+                    <form class="formbody" id="addform" action="./add" method="POST">
+                        <div class="leftdiv">
+                            
+                                <ul class="wrapper">
+                                    <li class="form-rowadd">
+                                        <label for="customername" class="required">Customer name</label>
+                                        <input type="text" id="customername" name="customername" required >
+                                    </li>
+                                    <li class="form-rowadd">
+                                        <label for="customerno" class="required">Customer No.</label>
+                                        <input type="text" id="customerno" name="customerno" required >
+                                    </li>
+                                    <li class="form-rowadd">
+                                        <label for="invoiceno" class="required">Invoice No.</label>
+                                        <input type="text" id="invoiceno" name="invoiceno" required class="required">
+                                    </li>
+                                    <li class="form-rowadd">
+                                        <label for="invoiceamount" class="required">Invoice Amount</label>
+                                        <input type="text" id="invoiceamount" name="invoiceamount" required class="required">
+                                    </li>
+                                </ul>   
+                            </div>
+                        <div class="rightdiv">
+                            <ul class="wrapper">
+                                <li class="form-rowadd">
+                                    <label for="duedate" class="required">Due Date</label>
+                                    <input type="date" id="duedate" name="duedate" required class="required">
+                                </li>
+                                <li class="form-rowadd">
+                                    <label for="notes">Notes</label>
+                                    <input type="text" id="notes" name="notes">
+                                </li>
+                            </ul>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="addmodal-footer">
+                    <button class="canceladd" id="canceladdbtn">Cancel</button>
+                    <button class="resetadd" id="resetadd" onclick="resetadd()">Clear</button>
+                    <button class="add" type="submit" form="addform">Add</button>
+
+                </div>
+            </div>
+        </div>
+        
+        <div id="editmodal" class="modal">
+            <div class="editmodal-content">
+                <div class="editmodal-header">
+                    <text class="modalheader">Edit Invoice</text>
+                    <span class="closebtn">&times;</span>
+                </div>
+
+                <div class="editmodal-body">
+                    <form id="editform" action="./edit" method="POST">
+                        <ul class="wrapper">
+                            <li class="form-rowedit">
+                                <label for="invoiceamountedit">Invoice Amount</label>
+                                <input type="text" id="invoiceamountedit" name="invoiceamountedit">
+                            </li>
+                            <li class="form-rowedit">
+                                <label for="notesedit">Notes</label>
+                                <input type="textarea" id="notesedit" name="notesedit">
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="editmodal-footer">
+                    <button class="canceledit" id="cancelbtnedit">Cancel</button>
+                    <button class="resetedit" onclick="resetedit()">Reset</button>
+                    <button class="saveedit" id="saveedit" type="submit" form="editform">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="delmodal" class="modal">
+            <div class="delmodal-content">
+                <div class="delmodal-header">
+                    <text class="modalheader">Delete record(s)?</text>
+                    <span class="closebtn">&times;</span>
+                </div>
+                <div class="delmodal-body">
+                    <p>You'll lose your record(s) after this action. We can't recover them once you delete.</p>
+                    <p>Are you sure you want to <span style="color: red;">permanently delete</span> them?</p>
+                </div>
+                <div class="delmodal-footer">
+                    <button class="canceldel" id="cancelbtndel">Cancel</button>
+                    <button class="deletedel">Delete</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
